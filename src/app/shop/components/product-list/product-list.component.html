@@ -1,0 +1,14 @@
+<ng-template appPlaceholder></ng-template>
+<div class="container mt-4">
+    <h1>Products</h1>
+    <hr />
+    <div class="d-flex mx-auto">
+        <input [(ngModel)]="filteredProduct" class="form-control me-2" type="search" placeholder="Search products">
+    </div>
+
+    <div class="row mt-4">
+        <app-product-item class="col-md-6 col-lg-4 mb-4"
+        *ngFor="let product of products | filter:filteredProduct:'name'"
+        [product]="product"></app-product-item>
+    </div>
+</div>

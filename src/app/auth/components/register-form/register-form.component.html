@@ -1,0 +1,40 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-xs-12 col-md-6 mx-auto">
+          <p *ngIf="validError" class="alert alert-danger">
+            Unable to submit the form. The form is not valid!
+          </p>
+    
+          <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+          <form *ngIf="!isLoading" [formGroup]="registerForm" (ngSubmit)="onSignUp()" class="mt-3 mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+            <hr />
+
+            <div class="form-group mb-2">
+              <label for="email">E-Mail</label>
+              <input type="email" formControlName="email" id="email" placeholder="Email address" class="form-control" />
+              <p *ngIf="controlValidationFeedback('email')" class="mb-0 fst-italic text-danger">Please enter a valid email!</p>
+              <span *ngIf="errorValidationFeedback('email', 'emailExist')" class="mt-1 fst-italic text-danger">Email already exist!</span>
+              <span *ngIf="errorValidationFeedback('email', 'maxlength')" class="mt-1 fst-italic text-danger">Email can only contain 50 characters!</span>
+            </div>
+            <div class="form-group mb-2">
+                <label for="username">Username</label>
+                <input type="text" formControlName="username" id="username" placeholder="Username" class="form-control" />
+                <p *ngIf="controlValidationFeedback('username')"  class="mb-0 fst-italic text-danger">Please enter a valid username!</p>
+                <span *ngIf="errorValidationFeedback('username', 'usernameExist')" class="fst-italic text-danger">Username already exist!</span>
+                <span *ngIf="errorValidationFeedback('username', 'maxlength')" class="fst-italic text-danger">Username can only contain 20 characters!</span>
+              </div>
+            <div class="form-group mb-2">
+              <label for="password">Password</label>
+              <input type="password" formControlName="password" id="password" placeholder="Password" class="form-control" />
+              <p *ngIf="controlValidationFeedback('password')" class="mb-0 fst-italic text-danger">Please enter a valid password!</p>
+              <span *ngIf="errorValidationFeedback('password', 'maxlength')" class="mt-1 fst-italic text-danger">Password can only contain 120 characters!</span>
+            </div>
+            <div class="mt-4">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+            </div>
+          </form>
+        </div>
+      </div>    
+</div>

@@ -1,0 +1,21 @@
+<div class="modal fade show" style="display: block;" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ product.name }}</h5>
+        <button type="button" (click)="onClose()" class="btn-close"></button>
+      </div>
+      <div class="modal-body">
+        <img [src]="product.imagePath" class="card-img-top" [alt]="product.name">
+        <hr />
+        <h5 class="mb-3">Description:</h5>
+        <p>{{ product.description }}</p>
+        <p class="badge bg-success">{{ product.price | currency:'EUR' }}  {{ product.status }}</p>
+      </div>
+      <div class="modal-footer">
+        <app-cart-button [product]="product"></app-cart-button>
+        <button type="button" (click)="onClose()" class="btn btn-secondary">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

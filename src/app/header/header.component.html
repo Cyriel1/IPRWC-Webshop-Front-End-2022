@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+
+    <a class="navbar-brand font-monospace" routerLink="/shop">Toastware</a>
+
+    <button appCollapse class="navbar-toggler" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/shop" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><i
+              class="bi bi-shop"></i> Shop</a>
+        </li>
+
+        <li *ngIf="isAdmin()" class="nav-item">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active"><i class="bi bi-clipboard2-plus-fill"></i>
+            Admin</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cart" routerLinkActive="active"><i class="bi bi-cart-fill"></i> Cart</a>
+        </li>
+
+        <li *ngIf="isAuthenticated" class="nav-item">
+          <a class="nav-link" routerLink="/orders" routerLinkActive="active"><i class="bi bi-card-list"></i> Orders</a>
+        </li>
+
+        <li *ngIf="!isAuthenticated" class="nav-item dropdown">
+          <a appDropdown class="nav-link dropdown-toggle" role="button">
+            Account
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-left">
+            <li><a class="dropdown-item" routerLink="/login">Login</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" routerLink="/register">Register</a></li>
+          </ul>
+        </li>
+
+        <li *ngIf="isAuthenticated" class="nav-item dropdown">
+          <a appDropdown class="nav-link dropdown-toggle" role="button">
+            {{ username }}
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-left">
+            <li><a class="dropdown-item" routerLink="/profile">
+                <i class="bi bi-file-earmark-person"></i> Profile</a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" (click)="onLogout()">Logout</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>

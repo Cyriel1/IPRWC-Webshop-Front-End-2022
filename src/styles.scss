@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    background: radial-gradient(circle at 0 0,#deecff,#e4eded,#affad7);
+}
+
+.modal-open {
+    width: 100%;
+    overflow: hidden;
+}

@@ -1,0 +1,60 @@
+<div class="container mt-4">
+    <p *ngIf="validError" class="alert alert-danger">
+        {{ validMessage }}
+    </p>
+
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+    <form *ngIf="!isLoading" class="row g-2 mx-auto mb-4" [formGroup]="profileForm" (ngSubmit)="onSaveProfile()">
+        <div class="col-12">
+            <h1 class="h3 mb-3 font-weight-normal">User Profile</h1>
+            <hr />
+        </div>
+
+        <div class="col-md-6">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" id="firstName" formControlName="firstName" placeholder="First Name" class="form-control" />
+            <p *ngIf="controlValidationFeedback('firstName')"  class="mb-0 fst-italic text-danger">Please enter a valid fist name!</p>
+            <span *ngIf="errorValidationFeedback('firstName', 'maxlength')" class="fst-italic text-danger">Username can only contain 65 characters!</span>
+        </div>
+
+        <div class="col-md-6">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" id="lastName" formControlName="lastName" placeholder="Last Name" class="form-control" />
+            <p *ngIf="controlValidationFeedback('lastName')"  class="mb-0 fst-italic text-danger">Please enter a valid last name!</p>
+            <span *ngIf="errorValidationFeedback('lastName', 'maxlength')" class="fst-italic text-danger">Last name can only contain 65 characters!</span>
+        </div>
+
+        <div class="col-12">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" id="address" formControlName="address" placeholder="Address" class="form-control">
+            <p *ngIf="controlValidationFeedback('address')"  class="mb-0 fst-italic text-danger">Please enter a valid address name!</p>
+            <span *ngIf="errorValidationFeedback('address', 'maxlength')" class="fst-italic text-danger">Address name can only contain 120 characters!</span>
+        </div>
+
+        <div class="col-md-6">
+            <label for="city" class="form-label">City</label>
+            <input type="text" id="city" formControlName="city" placeholder="City" class="form-control" />
+            <p *ngIf="controlValidationFeedback('city')"  class="mb-0 fst-italic text-danger">Please enter a valid city!</p>
+            <span *ngIf="errorValidationFeedback('city', 'maxlength')" class="fst-italic text-danger">City can only contain 50 characters!</span>
+        </div>
+
+        <div class="col-md-2">
+            <label for="zip" class="form-label">Zip</label>
+            <input type="text" id="zip" formControlName="zip" placeholder="4562JT" class="form-control" />
+            <p *ngIf="controlValidationFeedback('zip')"  class="mb-0 fst-italic text-danger">Please enter a valid zip!</p>
+            <span *ngIf="errorValidationFeedback('zip', 'maxlength')" class="fst-italic text-danger">Zip can only contain 6 characters!</span>
+        </div>
+
+        <div class="col-md-4">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input type="text" id="phoneNumber" formControlName="phoneNumber" placeholder="0639427453" class="form-control" />
+            <p *ngIf="controlValidationFeedback('phoneNumber')"  class="mb-0 fst-italic text-danger">Please enter a valid phone number!</p>
+            <span *ngIf="errorValidationFeedback('phoneNumber', 'pattern')" class="fst-italic text-danger">Not a real phone number!</span>
+        </div>
+
+        <div class="mt-4">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Save Changes</button>
+        </div>
+    </form>
+</div>

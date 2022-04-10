@@ -1,0 +1,14 @@
+<div class="card">
+  <img [src]="product.imagePath" class="card-img-top" [alt]="product.name">
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.description | shorten:92 }}</p>
+    <p class="badge bg-success">{{ product.price | currency:'EUR' }}  {{ product.status }}</p>
+    <div class="d-flex justify-content-between">
+      <app-cart-button [product]="product"></app-cart-button>
+      <a class="btn btn-secondary" (click)="onViewProduct(product.id)">
+        View Product
+      </a>
+    </div>
+  </div>
+</div>
