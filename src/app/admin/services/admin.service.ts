@@ -9,12 +9,13 @@ export class AdminService {
 
     createProductFormData(file: File | null | undefined, product: Product): FormData {
         const productData = new FormData();
+        productData.set('product', JSON.stringify(product));
         if (file) {
             productData.set('file', file);
+
+            return productData;
         }
         productData.set('file', new Blob);
-        productData.set('product', JSON.stringify(product));
-
 
         return productData;
     }
