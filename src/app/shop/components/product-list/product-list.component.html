@@ -8,7 +8,6 @@
 
     <div class="row mt-4">
         <app-product-item class="col-md-6 col-lg-4 mb-4"
-        *ngFor="let product of products | filter:filteredProduct:'name'"
-        [product]="product"></app-product-item>
+            *ngFor="let product of products | filter:filteredProduct:'name'" [product]="product"></app-product-item>
     </div>
 </div>

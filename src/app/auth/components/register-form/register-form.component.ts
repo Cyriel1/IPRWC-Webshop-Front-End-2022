@@ -16,7 +16,8 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
   validError: boolean = false;
   registerForm: FormGroup = new FormGroup({});
 
-  constructor(private authService: AuthService,
+  constructor(
+    private authService: AuthService,
     private authStorageService: AuthStorageService,
     private router: Router) { }
 

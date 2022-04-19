@@ -1,8 +1,10 @@
 export const environment = {
   production: true,
-  serverHost: 'http://161.97.123.113',
+  serverHost: 'https://backend.toastware.com',
   serverPort: '8080',
+  shopPath: '/api/shop',
+  authPath: '/api/auth',
   serverDomain: function (): string {
-    return this.serverHost + ':' + this.serverPort;
+    return this.serverHost;
   }
 };

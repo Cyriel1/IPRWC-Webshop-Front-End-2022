@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { BehaviorSubject, catchError, map, Observable, Subject, Subscription, throwError } from "rxjs";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
 
 import { AuthResponse } from "../models/payload/auth-repsonse.model";
 import { Token } from "../models/token.model";
@@ -25,6 +25,7 @@ export class AuthService {
     const isAccessTokenExpired: boolean = this.jwtHelper.isTokenExpired(accessToken);
     const decodeToken: Token = this.jwtHelper.decodeToken(accessToken);
     const loadedUser: User = new User(
+      decodeToken.id,
       decodeToken.email,
       decodeToken.sub,
       decodeToken.roles,
@@ -62,6 +63,7 @@ export class AuthService {
     const decodeToken: Token = this.jwtHelper.decodeToken(accessToken);
 
     const user = new User(
+      decodeToken.id,
       decodeToken.email,
       decodeToken.sub,
       decodeToken.roles,

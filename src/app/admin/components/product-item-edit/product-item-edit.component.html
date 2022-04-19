@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <span class="badge my-auto mx-3" [ngClass]="{ 
+                'bg-secondary': product.status === 'out of order', 
+                'bg-success': product.status === 'in stock' }">{{ product.price | currency:'EUR' }} {{ product.status
+                }}</span>
+        </div>
+
+        <p class="card-text">{{ product.description | shorten:350 }}</p>
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-success" (click)="onViewProduct(product.id)">
+                <i class="bi bi-pencil-square"></i> Edit Product
+            </a>
+            <a class="btn btn-outline-danger" (click)="onDeleteProduct(product.id)">
+                <i class="bi bi-trash-fill"></i> Remove Product
+            </a>
+        </div>
+    </div>
+</div>

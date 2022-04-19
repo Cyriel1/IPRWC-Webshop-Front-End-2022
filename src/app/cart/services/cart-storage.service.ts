@@ -7,20 +7,19 @@ import { environment } from 'src/environments/environment';
 import { CartService } from 'src/app/cart/services/cart.service';
 
 import { Cart } from 'src/app/cart/models/cart.model';
-import { CartItem } from '../../cart/models/cart-item.model';
+import { CartItem } from '../models/cart-item.model';
 import { CartRequest } from 'src/app/cart/models/payloads/cartRequest.model';
-
 
 @Injectable()
 export class CartStorageService {
-    shopPath: string = '/api/shop';
 
-    constructor(private http: HttpClient,
+    constructor(
+        private http: HttpClient,
         private cartService: CartService) { }
 
-    saveCart(cartRequest: CartRequest): Observable<{ message: string }> {        
+    saveCart(cartRequest: CartRequest): Observable<{ message: string }> {
         return this.http.post<{ message: string }>(
-            environment.serverDomain() + this.shopPath + '/cart-item',
+            environment.serverDomain() + environment.shopPath + '/orders',
             cartRequest,
             {
                 responseType: 'json'

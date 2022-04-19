@@ -11,7 +11,6 @@ import { AuthRequest } from "../models/payload/auth-request.model";
 
 @Injectable()
 export class AuthStorageService {
-    authPath: string = '/api/auth';
 
     constructor(
         private http: HttpClient,
@@ -20,7 +19,7 @@ export class AuthStorageService {
 
     login(credentials: AuthRequest): Observable<AuthResponse> {
         return this.http.post<AuthResponse>(
-            environment.serverDomain() + this.authPath + '/login',
+            environment.serverDomain() + environment.authPath + '/login',
             credentials,
             {
                 responseType: 'json'
@@ -41,7 +40,7 @@ export class AuthStorageService {
 
     signUp(credentials: AuthRequest): Observable<{ message: string }> {
         return this.http.post<{ message: string }>(
-            environment.serverDomain() + this.authPath + '/register',
+            environment.serverDomain() + environment.authPath + '/register',
             credentials,
             {
                 responseType: 'json'
@@ -54,14 +53,14 @@ export class AuthStorageService {
             }
         ),
             tap(() => {
-                this.login(credentials).subscribe();
+                this.login(credentials);
             }
             ));
     }
 
     validateUsername(username: string): void {
         this.http.get<boolean>(
-            environment.serverDomain() + this.authPath + `/validate/username/${username}`,
+            environment.serverDomain() + environment.authPath + `/validate/username/${username}`,
             {
                 responseType: 'json'
             }
@@ -78,7 +77,7 @@ export class AuthStorageService {
 
     validateEmail(email: string): void {
         this.http.get<boolean>(
-            environment.serverDomain() + this.authPath + `/validate/email/${email}`,
+            environment.serverDomain() + environment.authPath + `/validate/email/${email}`,
             {
                 responseType: 'json'
             }

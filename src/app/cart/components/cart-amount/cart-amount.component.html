@@ -20,6 +20,7 @@
         <span><strong>{{ cart.totalPrice * 1.21 | currency:'EUR' }}</strong></span>
       </li>
     </ul>
-    <button (click)="onAddCart()" type="button" class="btn btn-primary btn-block"><i class="bi bi-cart-fill"></i> Place order</button>
+    <button (click)="onAddCart()" [disabled]="!isAuthenticated || !hasProduct()" type="button"
+      class="btn btn-primary btn-block"><i class="bi bi-cart-fill"></i> Place order</button>
   </div>
 </div>

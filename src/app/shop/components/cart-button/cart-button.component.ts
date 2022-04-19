@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CartItem } from 'src/app/cart/models/cart-item.model';
-import { CartStorageService } from 'src/app/shared/services/cart-storage.service';
+
+import { CartStorageService } from 'src/app/cart/services/cart-storage.service';
 
 import { Product } from '../../models/product.model';
+import { CartItem } from 'src/app/cart/models/cart-item.model';
 
 @Component({
   selector: 'app-cart-button',
@@ -12,10 +13,10 @@ import { Product } from '../../models/product.model';
 export class CartButtonComponent implements OnInit {
   @Input() product: Product = new Product(0, 0.00, '', '', '', '');;
 
-  cartCheck:boolean = false;
-  addToCart:string = "Add to Cart";
+  cartCheck: boolean = false;
+  addToCart: string = "Add to Cart";
 
-  constructor(private cartStorageService:CartStorageService) { }
+  constructor(private cartStorageService: CartStorageService) { }
 
   ngOnInit(): void {
     this.isAddedToCart();

@@ -3,10 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProfileFormComponent } from './components/profile-form/profile-form.component';
 
+import { ProfileResolverService } from './services/resolvers/profile-resolver.service';
+
+import { AuthGuard } from '../auth/services/guards/auth-gaurd.service';
+
 const routes: Routes = [
   {
     path: 'profile',
-    component: ProfileFormComponent
+    component: ProfileFormComponent,
+    resolve: [ProfileResolverService],
+    canActivate: [AuthGuard]
   }
 ];
 

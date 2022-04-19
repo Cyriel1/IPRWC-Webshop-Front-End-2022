@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
 import { ShopRoutingModule } from './shop-routing.module';
@@ -19,7 +18,6 @@ import { CartButtonComponent } from './components/cart-button/cart-button.compon
   ],
   imports: [
     SharedModule,
-    RouterModule,
     FormsModule,
     ShopRoutingModule,
   ],

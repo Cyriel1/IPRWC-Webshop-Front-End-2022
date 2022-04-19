@@ -1,0 +1,4 @@
+<li class="d-flex justify-content-between">
+    <strong>{{ order.product.name }} (Qty:{{ order.quantity}})</strong>
+    <span>{{ order.product.price * order.quantity| currency:'EUR' }}</span>
+</li>

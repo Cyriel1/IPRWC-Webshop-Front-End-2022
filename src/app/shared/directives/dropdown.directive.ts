@@ -1,26 +1,26 @@
-import { 
-  Directive, 
-  ElementRef, 
-  HostBinding, 
-  HostListener, 
+import {
+  Directive,
+  ElementRef,
+  HostBinding,
+  HostListener,
   Renderer2,
-  OnInit 
+  OnInit
 } from '@angular/core';
 
 @Directive({
   selector: '[appDropdown]'
 })
 export class DropdownDirective implements OnInit {
-  currentElement:any;
-  siblingElement:any
+  currentElement: any;
+  siblingElement: any
 
-  @HostBinding('class.show') isOpen:boolean = false;
+  @HostBinding('class.show') isOpen: boolean = false;
 
   @HostListener('document:click', ['$event']) toggleOpen(event: Event) {
-    const show:string= 'show';
+    const show: string = 'show';
     this.isOpen = this.currentElement.contains(event.target) ? !this.isOpen : false;
 
-    if(this.isOpen){
+    if (this.isOpen) {
       this.renderer.addClass(this.siblingElement, show);
 
       return;
@@ -29,10 +29,10 @@ export class DropdownDirective implements OnInit {
   }
 
   constructor(
-    private elRef: ElementRef, 
+    private elRef: ElementRef,
     private renderer: Renderer2) { }
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.currentElement = this.elRef.nativeElement;
     this.siblingElement = this.renderer.nextSibling(this.currentElement);
   }

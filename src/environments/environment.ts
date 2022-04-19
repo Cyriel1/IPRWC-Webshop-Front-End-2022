@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   serverHost: 'http://localhost',
   serverPort: '8080',
+  shopPath: '/api/shop',
+  authPath: '/api/auth',
   serverDomain: function (): string {
     return this.serverHost + ':' + this.serverPort;
   }

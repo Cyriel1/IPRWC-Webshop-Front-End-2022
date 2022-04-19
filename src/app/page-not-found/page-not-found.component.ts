@@ -7,13 +7,13 @@ import { ActivatedRoute, Data } from '@angular/router';
   styleUrls: ['./page-not-found.component.scss']
 })
 export class PageNotFoundComponent implements OnInit {
-  errorMessage:string = '';
+  errorMessage: string = '';
 
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(
-      (data:Data) => {
+      (data: Data) => {
         this.errorMessage = data['message'];
       }
     );

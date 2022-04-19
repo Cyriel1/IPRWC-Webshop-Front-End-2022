@@ -1,9 +1,11 @@
 <div class="card">
-  <img [src]="product.imagePath" class="card-img-top" [alt]="product.name">
+  <img [src]="'data:image/jpg;base64, ' + product.image | safe:'url'" class="card-img-top" [alt]="product.name">
   <div class="card-body">
     <h5 class="card-title">{{ product.name }}</h5>
     <p class="card-text">{{ product.description | shorten:92 }}</p>
-    <p class="badge bg-success">{{ product.price | currency:'EUR' }}  {{ product.status }}</p>
+    <p class="badge" [ngClass]="{ 
+      'bg-secondary': product.status === 'out of order', 
+      'bg-success': product.status === 'in stock' }">{{ product.price | currency:'EUR' }} {{ product.status }}</p>
     <div class="d-flex justify-content-between">
       <app-cart-button [product]="product"></app-cart-button>
       <a class="btn btn-secondary" (click)="onViewProduct(product.id)">

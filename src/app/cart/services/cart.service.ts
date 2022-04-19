@@ -15,7 +15,7 @@ export class CartService {
     }
 
     encodeCartItem(cartItem: CartItem): string {
-        const encodedCartItem = btoa(JSON.stringify(cartItem));
+        const encodedCartItem = btoa(encodeURIComponent(JSON.stringify(cartItem)));
         return encodedCartItem;
     }
 
@@ -29,7 +29,7 @@ export class CartService {
     }
 
     decodeCartItem(cartItem: string): CartItem {
-        const decodedCartItem: CartItem = JSON.parse(atob(cartItem));
+        const decodedCartItem: CartItem = JSON.parse(decodeURIComponent(atob(cartItem)));
         return decodedCartItem;
     }
 

@@ -1,20 +1,30 @@
-<div class="container mt-4">
+<ng-template appPlaceholder></ng-template>
+
+<div class="container mt-4" *ngIf="orderPlaced">
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+            <span class="display-1 d-block mb-5 mt-5">Thank you for your purchase!</span>
+            <div class="mb-4 lead">You will be redirected to the Orders page within 5 seconds!</div>
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4" *ngIf="!orderPlaced">
     <h1>Shopping Cart {{ productTotal() }}</h1>
     <hr />
     <div class="row mt-3">
         <div>
             <div class="card mb-3">
                 <div class="card-body">
-                    <app-cart-item 
-                    *ngFor="let cartItem of cartItems" 
-                    [cartItem]="cartItem"
-                    (deleteCartItem)="onRemoveCartItem($event)"></app-cart-item>
+                    <app-cart-item *ngFor="let cartItem of cartItems" [cartItem]="cartItem"
+                        (deleteCartItem)="onRemoveCartItem($event)"></app-cart-item>
                     <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase,
                         adding
                         items to your cart does not mean booking them.</p>
                 </div>
             </div>
         </div>
-        <app-cart-amount></app-cart-amount>
+        <app-cart-amount [alertHost]="alertHost" (orderPlaced)="onOrderPlaced($event)"></app-cart-amount>
     </div>
 </div>

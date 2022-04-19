@@ -1,0 +1,71 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-12 col-lg-10 mx-auto">
+      <p *ngIf="validError" class="alert alert-danger">
+        Unable to submit the form. The form is not valid!
+      </p>
+
+      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+      <form *ngIf="!isLoading" [formGroup]="editProductForm" (ngSubmit)="onAddOrUpdateProduct()" class="mt-3 mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">{{ newOrExistingProduct() }} Product</h1>
+        <hr />
+
+        <div class="row">
+          <div class="col-lg-4 col-md-12" *ngIf="product.image != '' ">
+            <div class="form-group mb-2">
+              <img [src]="'data:image/jpg;base64, ' + product.image | safe:'url'" class="img-fluid"
+                [alt]="product.name">
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-12" [ngClass]="{ 'col-lg-12': product.image === '' }">
+            <div class="form-group mb-2">
+              <label for="name">Name:</label>
+              <input type="text" formControlName="name" id="name" placeholder="Name" class="form-control" />
+              <p *ngIf="controlValidationFeedback('name')" class="mb-0 fst-italic text-danger">Please enter a name!</p>
+              <span *ngIf="errorValidationFeedback('name', 'maxlength')" class="mt-1 fst-italic text-danger">Name can
+                only contain 50 characters!</span>
+            </div>
+
+            <div class="form-group mb-2">
+              <label for="price">Price:</label>
+              <input type="number" formControlName="price" id="price" placeholder="0.00" class="form-control"
+                step="0.01" />
+              <p *ngIf="controlValidationFeedback('price')" class="mb-0 fst-italic text-danger">Please enter a price!
+              </p>
+            </div>
+
+            <div class="form-group mb-2">
+              <label for="description">Description:</label>
+              <textarea class="form-control" formControlName="description" id="description" placeholder="Description"
+                rows="5"></textarea>
+              <p *ngIf="controlValidationFeedback('description')" class="mb-0 fst-italic text-danger">Please enter a
+                description!</p>
+              <span *ngIf="errorValidationFeedback('description', 'maxlength')"
+                class="mt-1 fst-italic text-danger">Description can only contain 750 characters!</span>
+            </div>
+
+            <div class="form-group mb-2">
+              <label for="file">New Image:</label>
+              <input type="file" class="form-control" id="file" (change)="onHandleFileInput($event)" />
+            </div>
+
+            <div class="form-group mb-2">
+              <p class="mb-2">Status:</p>
+              <div class="form-check" *ngFor="let status of statuses">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" formControlName="status" [value]="status">{{ status }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <button class="btn btn-lg btn-success btn-block" type="submit">Save Product</button>
+          <button class="btn btn-lg btn-secondary btn-block mx-3" type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

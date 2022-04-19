@@ -21,14 +21,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userSub = this.authService.user.subscribe((user) => {
       this.isAuthenticated = !!user;
       if (this.isAuthenticated) {
-        this.username = user.username;       
+        this.username = user.username;    
         this.roles = user.roles;
       }
     })
   }
 
   isAdmin(): boolean{
-    return this.roles.indexOf('ROLE_ADMIN') > -1;
+    if (this.isAuthenticated) {
+      return this.roles.indexOf('ROLE_ADMIN') > -1;
+    }
+
+    return false;
   }
 
   onLogout():void {

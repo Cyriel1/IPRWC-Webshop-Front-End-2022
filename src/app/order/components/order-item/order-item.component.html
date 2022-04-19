@@ -1,39 +1,35 @@
 <div class="accordion-item mb-2">
     <button appCollapse class="accordion-header accordion-button" type="button">
-        Accordion Item
+        {{ receipt.timestamp | date: 'yyyy/MM/dd HH:mm:ss' }}
     </button>
 
     <div class="accordion-collapse collapse">
         <div class="accordion-body">
             <div class="ms-4 ps-2">
-                <h6 class="mb-3">JOHNATAN MILLER</h6>
-                <h5 class="mb-3">Thanks for your order</h5>
-    
+                <h5 class="mb-3">{{ receipt.profile.firstName }} {{ receipt.profile.lastName }}</h5>
+
+                <div class="row">
+                    <h6 class="col-md-6">Address: {{ receipt.profile.address }}</h6>
+                    <h6 class="col-md-6">City: {{ receipt.profile.city }}</h6>
+                    <h6 class="col-md-6">Zip: {{ receipt.profile.zip }}</h6>
+                    <h6 class="col-md-6">Phone number: +{{ receipt.profile.phoneNumber }}</h6>
+                </div>
+                <hr />
+                <h5 class="mb-3">Thanks for your order!</h5>
                 <em>Payment summary</em>
                 <hr />
             </div>
             <ul>
-                <li class="d-flex justify-content-between">
-                    <strong>Ether Chair (Qty:1)</strong>
-                    <span>€8.55</span>
-                </li>
-                <li class="d-flex justify-content-between">
-                    <strong>Ether Chair (Qty:1)</strong>
-                    <span>€8.55</span>
-                </li>
-                <li class="d-flex justify-content-between">
-                    <strong>Ether Chair (Qty:1)</strong>
-                    <span>€8.55</span>
-                </li>
+                <app-order-payment *ngFor="let order of receipt.orders" [order]="order"></app-order-payment>
                 <li class="d-flex justify-content-between">
                     <em>Shipping</em>
-                    <span>€8.55</span>
+                    <span>Free</span>
                 </li>
                 <br />
                 <hr />
                 <li class="d-flex justify-content-between">
                     <strong>Total</strong>
-                    <span>€8.55</span>
+                    <span>{{ totalPrice() | currency:'EUR' }}</span>
                 </li>
             </ul>
         </div>

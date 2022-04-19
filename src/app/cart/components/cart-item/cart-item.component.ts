@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Product } from 'src/app/shop/models/product.model';
-import { CartItem } from '../../models/cart-item.model';
-import { CartStorageService } from '../../../shared/services/cart-storage.service';
+import { CartStorageService } from '../../services/cart-storage.service';
 import { CartService } from '../../services/cart.service';
+
+import { CartItem } from '../../models/cart-item.model';
+import { Product } from 'src/app/shop/models/product.model';
 
 @Component({
   selector: 'app-cart-item',
@@ -18,7 +19,8 @@ export class CartItemComponent implements OnInit {
   isLoading: boolean = false;
   loadingTimer: any;
 
-  constructor(private cartStorageService: CartStorageService,
+  constructor(
+    private cartStorageService: CartStorageService,
     private cartService: CartService) { }
 
   ngOnInit(): void {

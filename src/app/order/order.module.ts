@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
-import { OrderListComponent } from './components/order-list/order-list.component';
 import { OrderRoutingModule } from './order-routing.module';
+
+import { OrderListComponent } from './components/order-list/order-list.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
+import { OrderPaymentComponent } from './components/order-payment/order-payment.component';
 
 @NgModule({
     declarations: [
         OrderListComponent,
-        OrderItemComponent
+        OrderItemComponent,
+        OrderPaymentComponent
     ],
     imports: [
         SharedModule,
-        RouterModule,
         OrderRoutingModule
     ]
 })

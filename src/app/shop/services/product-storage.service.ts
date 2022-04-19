@@ -5,12 +5,12 @@ import { Observable, tap } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
-import { Product } from '../models/product.model';
 import { ProductService } from './product.service';
+
+import { Product } from '../models/product.model';
 
 @Injectable()
 export class ProductStorageService {
-  shopPath: string = '/api/shop';
 
   constructor(
     private http: HttpClient,
@@ -21,7 +21,7 @@ export class ProductStorageService {
   fetchProducts(): Observable<Product[]> {
     return this.http
       .get<Product[]>(
-        environment.serverDomain() + this.shopPath + '/products',
+        environment.serverDomain() + environment.shopPath + '/products',
         {
           responseType: 'json'
         }
@@ -37,7 +37,7 @@ export class ProductStorageService {
 
   fetchProduct(productId: number): Observable<Product> {
     return this.http.get<Product>(
-      environment.serverDomain() + this.shopPath + `/product/${productId}`,
+      environment.serverDomain() + environment.shopPath + `/product/${productId}`,
       {
         responseType: 'json'
       }
